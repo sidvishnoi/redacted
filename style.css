@@ -1,0 +1,107 @@
+:root {
+  --bg-page: #ebebeb;
+  --bg-redact: #fff;
+  --color-redact: #111;
+  --color-link: #e12042;
+  --color-link-alt: #ba0a44;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-page: #222;
+    --bg-redact: #111;
+    --color-redact: #fff;
+    --color-link: pink;
+    --color-link-alt: palevioletred;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 1.5em 2em;
+  font-family: 'Anonymous Pro';
+  font-size: 1.5rem;
+  line-height: 1.5;
+  background: var(--bg-page);
+}
+
+h1,
+h2,
+p {
+  color: var(--color-redact);
+  margin: 1.5rem;
+}
+
+.indent {
+  margin-left: 2.5rem;
+}
+
+.el {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.5em;
+}
+
+.el::before {
+  position: absolute;
+  left: 0;
+  content: '';
+  background: var(--bg-redact);
+  z-index: -1;
+  height: 100%;
+  animation: redact 1s ease calc(var(--n, 0) * 0.4s) forwards;
+}
+
+a {
+  color: var(--color-link-alt);
+}
+a:hover,
+a:focus {
+  color: var(--color-link);
+}
+
+#bookmarklet {
+  display: inline-block;
+  background: var(--color-link);
+  padding: 0.5em;
+  color: var(--bg-redact);
+  margin-top: -1em;
+  border-radius: 3px;
+  cursor: grab;
+}
+#bookmarklet:hover {
+  background-color: var(--color-link-alt);
+}
+
+footer {
+  float: right;
+}
+
+@keyframes redact {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 1.5em 1em;
+    font-size: 1.2rem;
+  }
+  h1,
+  h2,
+  p {
+    margin: 0.5em;
+  }
+  .indent {
+    margin-left: 1em;
+  }
+}
